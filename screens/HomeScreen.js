@@ -1,5 +1,6 @@
+import "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   Platform,
@@ -7,19 +8,31 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { ScrollView } from "react-native-gesture-handler";
 
+import { allData } from "../assets/data";
 import { MonoText } from "../components/StyledText";
+import { Card, CardWrapper } from "./styles";
+import FirstPage from "./FirstPage";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
+  const [data, setData] = useState("");
+
+  const updateState = useEffect(() => {
+    setData(allData);
+  }, [allData]);
+
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.welcomeContainer}>
+        <CardWrapper style={styles.welcomeContainer}>
           {/* <Image
             source={
               __DEV__
@@ -28,8 +41,29 @@ export default function HomeScreen() {
             }
             style={styles.welcomeImage}
           /> */}
-          <View style={styles.card}></View>
-        </View>
+          {/* {console.log(allData)} */}
+          {/* {console.log(data.map((el) => el.mainTitle))} */}
+          {allData.map((data) => {
+            return (
+              <Card
+                key={data.mainTitle}
+                onPress={() =>
+                  navigation.navigate("FirstPage", {
+                    data,
+                  })
+                }
+              >
+                <Text>{data.mainTitle}</Text>
+              </Card>
+            );
+          })}
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          {/* <View style={styles.card}></View> */}
+        </CardWrapper>
 
         {/* <View style={styles.getStartedContainer}>
 
@@ -48,7 +82,7 @@ export default function HomeScreen() {
         </View> */}
 
         {/* <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+          <TouchableOpacity onPress={handleHhandleHelpPresselpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
               Help, it didn’t automatically
             </Text>
@@ -113,11 +147,6 @@ function handleHelpPress() {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    width: 200,
-    height: 120,
-    backgroundColor: "purple",
-  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
