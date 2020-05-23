@@ -21,11 +21,7 @@ export default function App(props) {
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
-            <Stack.Screen
-              name="FirstPage"
-              component={FirstPage}
-              // data={props.data}
-            />
+            <Stack.Screen name="FirstPage" component={FirstPage} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

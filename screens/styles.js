@@ -69,6 +69,25 @@ const Content = styled.Text`
   text-align: justify;
 `;
 
+const AppNameWrapper = styled.View`
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+`;
+
+const Name = styled.Text`
+  font-size: ${typography.heading};
+  margin-left: 10px;
+  font-size: 20px;
+`;
+
+const Logo = styled.Image`
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+`;
+
 export {
   CardWrapper,
   CardText,
@@ -78,4 +97,7 @@ export {
   ArticleIntro,
   Title,
   Content,
+  AppNameWrapper,
+  Name,
+  Logo,
 };

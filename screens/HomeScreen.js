@@ -10,6 +10,13 @@ import {
   View,
   Button,
 } from "react-native";
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from "expo-ads-admob";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ScrollView } from "react-native-gesture-handler";
@@ -21,94 +28,76 @@ import {
   CardText,
   CardTouchable,
   CardImageBackground,
+  AppNameWrapper,
+  Name,
+  Logo,
 } from "./styles";
 import FirstPage from "./FirstPage";
 
 export default function HomeScreen({ navigation }) {
-  // const image = {
-  //   uri: "https://source.unsplash.com/collection/10531495/180x100",
-  // };
-  // const image = {
-  //   uri: "https://source.unsplash.com/collection/180x100",
-  // };
+  const bannerError = () => {
+    console.log("An error");
+  };
+
+  // Show Full screen ads
+  const showInterstitial = async () => {
+    await AdMobInterstitial.setAdUnitID(
+      "ca-app-pub-9265958693530473/2300219617"
+    );
+    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+    await AdMobInterstitial.showAdAsync();
+  };
+
+  const OpenArticle = (data) => {
+    // showInterstitial();
+    return navigation.navigate("FirstPage", {
+      data,
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <CardWrapper style={styles.welcomeContainer}>
-          {/* <Image
-            source={
-              __DEV__
-                ? require("../assets/images/robot-dev.png")
-                : require("../assets/images/robot-prod.png")
-            }
-            style={styles.welcomeImage}
-          /> */}
-          {/* {console.log(allData)} */}
-          {/* {console.log(data.map((el) => el.mainTitle))} */}
-          {allData.map((data) => {
-            const image = { uri: data.cardImage };
-
-            return (
-              <CardTouchable
-                key={data.mainTitle}
-                onPress={() =>
-                  navigation.navigate("FirstPage", {
-                    data,
-                  })
-                }
-              >
-                <CardImageBackground
-                  source={image}
-                  imageStyle={{ borderRadius: 8 }}
-                >
-                  <CardText>{data.mainTitle}</CardText>
-                </CardImageBackground>
-              </CardTouchable>
-            );
-          })}
-          {/* <View style={styles.card}></View> */}
-        </CardWrapper>
-
-        {/* <View style={styles.getStartedContainer}>
-
-          <Text style={styles.getStartedText}>Open up the code for t:</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          >
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will
-            automatically reload.
-          </Text>
-        </View> */}
-
-        {/* <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHhandleHelpPresselpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically
-            </Text>
-          </TouchableOpacity>
-        </View> */}
-      </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        {/* <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text> */}
-
-        {/* <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}
+    <View style={styles.mainContainer}>
+      <View style={styles.container}>
+        <AppNameWrapper>
+          <Logo source={require("../assets/images/mylogo.jpg")} />
+          <Name>Shubham Kumar</Name>
+        </AppNameWrapper>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
         >
-          <MonoText style={styles.codeHighlightText}>
-            navigation/BottomTabNavigator.js
-          </MonoText>
-        </View> */}
+          <CardWrapper style={styles.welcomeContainer}>
+            {allData.map((data) => {
+              const image = { uri: data.cardImage };
+              return (
+                <>
+                  <CardTouchable
+                    key={data.mainTitle}
+                    onPress={() => OpenArticle(data)}
+                  >
+                    <CardImageBackground
+                      onPress={showInterstitial}
+                      source={image}
+                      imageStyle={{ borderRadius: 8 }}
+                    >
+                      <CardText>{data.mainTitle}</CardText>
+                    </CardImageBackground>
+                  </CardTouchable>
+                </>
+              );
+            })}
+          </CardWrapper>
+        </ScrollView>
+      </View>
+      <View>
+        <AdMobBanner
+          style={styles.bottomBanner}
+          bannerSize="smartBanner"
+          adUnitID="ca-app-pub-9265958693530473/1714375186"
+          // testDeviceID="EMULATOR"
+          servePersonalizedAds
+          didFailToReceiveAdWithError={bannerError}
+        />
       </View>
     </View>
   );
@@ -141,22 +130,36 @@ HomeScreen.navigationOptions = {
 //   }
 // }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/workflow/development-mode/"
-  );
-}
+// function handleLearnMorePress() {
+//   WebBrowser.openBrowserAsync(
+//     "https://docs.expo.io/versions/latest/workflow/development-mode/"
+//   );
+// }
 
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change"
-  );
-}
+// function handleHelpPress() {
+//   WebBrowser.openBrowserAsync(
+//     "https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change"
+//   );
+// }
 
 const styles = StyleSheet.create({
+  bottomBanner: {
+    position: "absolute",
+    bottom: 0,
+  },
+  containers: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    marginBottom: 40,
+  },
+  mainContainer: {
+    flex: 1,
   },
   developmentModeText: {
     marginBottom: 20,
