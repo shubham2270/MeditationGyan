@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Image,
   Platform,
@@ -16,16 +16,21 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import { allData } from "../assets/data";
 import { MonoText } from "../components/StyledText";
-import { Card, CardWrapper } from "./styles";
+import {
+  CardWrapper,
+  CardText,
+  CardTouchable,
+  CardImageBackground,
+} from "./styles";
 import FirstPage from "./FirstPage";
 
 export default function HomeScreen({ navigation }) {
-  const [data, setData] = useState("");
-
-  const updateState = useEffect(() => {
-    setData(allData);
-  }, [allData]);
-
+  // const image = {
+  //   uri: "https://source.unsplash.com/collection/10531495/180x100",
+  // };
+  // const image = {
+  //   uri: "https://source.unsplash.com/collection/180x100",
+  // };
   return (
     <View style={styles.container}>
       <ScrollView
@@ -44,8 +49,10 @@ export default function HomeScreen({ navigation }) {
           {/* {console.log(allData)} */}
           {/* {console.log(data.map((el) => el.mainTitle))} */}
           {allData.map((data) => {
+            const image = { uri: data.cardImage };
+
             return (
-              <Card
+              <CardTouchable
                 key={data.mainTitle}
                 onPress={() =>
                   navigation.navigate("FirstPage", {
@@ -53,15 +60,15 @@ export default function HomeScreen({ navigation }) {
                   })
                 }
               >
-                <Text>{data.mainTitle}</Text>
-              </Card>
+                <CardImageBackground
+                  source={image}
+                  imageStyle={{ borderRadius: 8 }}
+                >
+                  <CardText>{data.mainTitle}</CardText>
+                </CardImageBackground>
+              </CardTouchable>
             );
           })}
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
           {/* <View style={styles.card}></View> */}
         </CardWrapper>
 

@@ -9,20 +9,25 @@ import {
   ScrollView,
 } from "react-native";
 
+import { ArticleHeading, ArticleIntro, Title, Content } from "./styles";
+
 const FirstPage = ({ route }) => {
   const { mainTitle, intro, points } = route.params.data;
 
   return (
     <ScrollView>
       <View>
-        <Text>{intro}</Text>
+        <ArticleHeading>{mainTitle}</ArticleHeading>
+      </View>
+      <View>
+        <ArticleIntro>{intro}</ArticleIntro>
       </View>
 
       {points.map((el) => {
         return (
-          <View key={el.title}>
-            <Text>{el.title}</Text>
-            <Text>{el.content}</Text>
+          <View key={el.id}>
+            {el.title === "" ? null : <Title>{el.title}</Title>}
+            {el.content === "" ? null : <Content>{el.content}</Content>}
           </View>
         );
       })}
