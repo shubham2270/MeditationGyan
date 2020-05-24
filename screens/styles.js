@@ -105,6 +105,7 @@ const NoInternetTextWrapper = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 `;
 
 export {
