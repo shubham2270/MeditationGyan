@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation, isConnected }) {
   };
 
   const OpenArticle = (data) => {
-    // showInterstitial();
+    showInterstitial();
     return navigation.navigate("FirstPage", {
       data,
     });
@@ -97,7 +97,8 @@ export default function HomeScreen({ navigation, isConnected }) {
           ) : (
             <NoInternetTextWrapper>
               <NoInternetText>
-                Please turn Internet On to use this app!
+                Please turn On Internet to use this app! If it's already on try
+                turning it off and on again.
               </NoInternetText>
             </NoInternetTextWrapper>
           )
