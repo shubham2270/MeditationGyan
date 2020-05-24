@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
+import { NetworkConsumer } from "react-native-offline";
 import {
   Image,
   Platform,
@@ -31,10 +32,12 @@ import {
   AppNameWrapper,
   Name,
   Logo,
+  NoInternetText,
+  NoInternetTextWrapper,
 } from "./styles";
 import FirstPage from "./FirstPage";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, isConnected }) {
   const bannerError = () => {
     console.log("An error");
   };
@@ -57,38 +60,50 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        <AppNameWrapper>
-          <Logo source={require("../assets/images/mylogo.jpg")} />
-          <Name>Shubham Kumar</Name>
-        </AppNameWrapper>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <CardWrapper style={styles.welcomeContainer}>
-            {allData.map((data) => {
-              const image = { uri: data.cardImage };
-              return (
-                <>
-                  <CardTouchable
-                    key={data.mainTitle}
-                    onPress={() => OpenArticle(data)}
-                  >
-                    <CardImageBackground
-                      onPress={showInterstitial}
-                      source={image}
-                      imageStyle={{ borderRadius: 8 }}
-                    >
-                      <CardText>{data.mainTitle}</CardText>
-                    </CardImageBackground>
-                  </CardTouchable>
-                </>
-              );
-            })}
-          </CardWrapper>
-        </ScrollView>
-      </View>
+      {/* Checks for Internet connection and render*/}
+      <NetworkConsumer>
+        {({ isConnected }) =>
+          isConnected ? (
+            <View style={styles.container}>
+              <AppNameWrapper>
+                <Logo source={require("../assets/images/mylogo.jpg")} />
+                <Name>Shubham Kumar</Name>
+              </AppNameWrapper>
+              <ScrollView
+                style={styles.container}
+                contentContainerStyle={styles.contentContainer}
+              >
+                <CardWrapper style={styles.welcomeContainer}>
+                  {allData.map((data) => {
+                    const image = { uri: data.cardImage };
+                    return (
+                      <CardTouchable
+                        key={data.mainTitle}
+                        onPress={() => OpenArticle(data)}
+                      >
+                        <CardImageBackground
+                          onPress={showInterstitial}
+                          source={image}
+                          imageStyle={{ borderRadius: 8 }}
+                        >
+                          <CardText>{data.mainTitle}</CardText>
+                        </CardImageBackground>
+                      </CardTouchable>
+                    );
+                  })}
+                </CardWrapper>
+              </ScrollView>
+            </View>
+          ) : (
+            <NoInternetTextWrapper>
+              <NoInternetText>
+                Please turn Internet On to use this app!
+              </NoInternetText>
+            </NoInternetTextWrapper>
+          )
+        }
+      </NetworkConsumer>
+
       <View>
         <AdMobBanner
           style={styles.bottomBanner}

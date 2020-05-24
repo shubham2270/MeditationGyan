@@ -88,8 +88,28 @@ const Logo = styled.Image`
   border-radius: 50px;
 `;
 
+const NoInternetText = styled.Text`
+  font-size: 20px;
+  color: red;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid red;
+  padding: 5px;
+  border-radius: 5px;
+`;
+
+const NoInternetTextWrapper = styled.View`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export {
   CardWrapper,
+  NoInternetText,
   CardText,
   CardTouchable,
   CardImageBackground,
@@ -100,4 +120,5 @@ export {
   AppNameWrapper,
   Name,
   Logo,
+  NoInternetTextWrapper,
 };
