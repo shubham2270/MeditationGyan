@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NetworkConsumer } from "react-native-offline";
 import {
   Image,
@@ -38,6 +38,8 @@ import {
 import FirstPage from "./FirstPage";
 
 export default function HomeScreen({ navigation, isConnected }) {
+  const [loading, setLoading] = useState(true);
+
   const bannerError = () => {
     console.log("An error");
   };
@@ -58,6 +60,16 @@ export default function HomeScreen({ navigation, isConnected }) {
     });
   };
 
+  const setLoadingFalse = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
+
+  const setLoadingTrue = () => {
+    setLoading(true);
+  };
+
   return (
     <View style={styles.mainContainer}>
       {/* Checks for Internet connection and render*/}
@@ -69,33 +81,41 @@ export default function HomeScreen({ navigation, isConnected }) {
                 <Logo source={require("../assets/images/mylogo.jpg")} />
                 <Name>Shubham Kumar</Name>
               </AppNameWrapper>
-              <ScrollView
-                style={styles.container}
-                contentContainerStyle={styles.contentContainer}
-              >
-                <CardWrapper style={styles.welcomeContainer}>
-                  {allData.map((data) => {
-                    const image = { uri: data.cardImage };
-                    return (
-                      <CardTouchable
-                        key={data.mainTitle}
-                        onPress={() => OpenArticle(data)}
-                      >
-                        <CardImageBackground
-                          onPress={showInterstitial}
-                          source={image}
-                          imageStyle={{ borderRadius: 8 }}
+              {setLoadingFalse()}
+              {loading ? (
+                <NoInternetTextWrapper>
+                  <NoInternetText>Loading...</NoInternetText>
+                </NoInternetTextWrapper>
+              ) : (
+                <ScrollView
+                  style={styles.container}
+                  contentContainerStyle={styles.contentContainer}
+                >
+                  <CardWrapper style={styles.welcomeContainer}>
+                    {allData.map((data) => {
+                      const image = { uri: data.cardImage };
+                      return (
+                        <CardTouchable
+                          key={data.mainTitle}
+                          onPress={() => OpenArticle(data)}
                         >
-                          <CardText>{data.mainTitle}</CardText>
-                        </CardImageBackground>
-                      </CardTouchable>
-                    );
-                  })}
-                </CardWrapper>
-              </ScrollView>
+                          <CardImageBackground
+                            onPress={showInterstitial}
+                            source={image}
+                            imageStyle={{ borderRadius: 8 }}
+                          >
+                            <CardText>{data.mainTitle}</CardText>
+                          </CardImageBackground>
+                        </CardTouchable>
+                      );
+                    })}
+                  </CardWrapper>
+                </ScrollView>
+              )}
             </View>
           ) : (
             <NoInternetTextWrapper>
+              {setLoadingTrue()}
               <NoInternetText>
                 Please turn On Internet to use this app! If it's already on try
                 turning it off and on again.
