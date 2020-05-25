@@ -76,8 +76,8 @@ export default function HomeScreen({ navigation, isConnected }) {
       <NetworkConsumer>
         {({ isConnected }) =>
           isConnected ? (
-            <View style={styles.container}>
-              <AppNameWrapper>
+            <AppNameWrapper>
+              <View style={styles.container}>
                 <Logo source={require("../assets/images/mylogo.jpg")} />
                 <Name>Shubham Kumar</Name>
               </AppNameWrapper>
