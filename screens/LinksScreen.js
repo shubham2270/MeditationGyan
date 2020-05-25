@@ -1,22 +1,14 @@
+/* eslint-disable react/prop-types */
 import { Ionicons } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { RectButton, ScrollView } from "react-native-gesture-handler";
-import {
-  AdMobBanner,
-  AdMobInterstitial,
-  PublisherBanner,
-  AdMobRewarded,
-  setTestDeviceIDAsync,
-} from "expo-ads-admob";
+import AdMobBannerAd from "./AdMobBanner";
 
 export default function LinksScreen() {
-  const bannerError = () => {
-    console.log("An error");
-  };
   return (
-    <>
+    <View>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
@@ -41,18 +33,13 @@ export default function LinksScreen() {
           }
           isLastOption
         />
+
+        {/* <Text>SOCIAL SHARE</Text> */}
       </ScrollView>
       <View>
-        <AdMobBanner
-          style={styles.bottomBanner}
-          bannerSize="smartBanner"
-          adUnitID="ca-app-pub-9265958693530473/1714375186"
-          // testDeviceID="EMULATOR"
-          servePersonalizedAds
-          didFailToReceiveAdWithError={bannerError}
-        />
+        <AdMobBannerAd />
       </View>
-    </>
+    </View>
   );
 }
 
@@ -77,16 +64,18 @@ function OptionButton({ icon, label, bgColor, onPress, isLastOption }) {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
+    // display: "flex",
     padding: 20,
-    flex: 1,
-    backgroundColor: "#fafafa",
-    marginBottom: 50,
+    height: "80%",
+    // flex: 1,
+    // backgroundColor: "#fafafa",
+    backgroundColor: "yellow",
   },
   contentContainer: {
     paddingTop: 15,
   },
   bottomBanner: {
+    flex: 1,
     position: "absolute",
     bottom: 0,
   },

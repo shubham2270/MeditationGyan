@@ -2,7 +2,7 @@
 import "react-native-gesture-handler";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { AdMobBanner, AdMobInterstitial } from "expo-ads-admob";
+import { AdMobBanner } from "expo-ads-admob";
 
 const AdMobBannerAd = () => {
   const bannerError = () => {
@@ -24,7 +24,7 @@ const AdMobBannerAd = () => {
 
 const styles = StyleSheet.create({
   bottomBanner: {
-    position: "absolute",
+    // position: "absolute",
     bottom: 0,
   },
 });
