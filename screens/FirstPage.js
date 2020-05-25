@@ -1,33 +1,22 @@
-import React, { useState } from "react";
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ScrollView,
-} from "react-native";
-import {
-  AdMobBanner,
-  AdMobInterstitial,
-  PublisherBanner,
-  AdMobRewarded,
-  setTestDeviceIDAsync,
-} from "expo-ads-admob";
+/* eslint-disable react/prop-types */
+import React from "react";
+import { View } from "react-native";
 
-import { ArticleHeading, ArticleIntro, Title, Content } from "./styles";
+import {
+  ArticleHeading,
+  ArticleIntro,
+  Title,
+  Content,
+  ScrollViewContainer,
+} from "./styles";
+import AdMobBannerAd from "./AdMobBanner";
 
 const FirstPage = ({ route }) => {
   const { mainTitle, intro, points } = route.params.data;
 
-  const bannerError = () => {
-    console.log("An error");
-  };
-
   return (
     <>
-      <ScrollView style={styles.container}>
+      <ScrollViewContainer>
         <View>
           <ArticleHeading>{mainTitle}</ArticleHeading>
         </View>
@@ -42,31 +31,10 @@ const FirstPage = ({ route }) => {
             </View>
           );
         })}
-      </ScrollView>
-      <View>
-        <AdMobBanner
-          style={styles.bottomBanner}
-          bannerSize="smartBanner"
-          adUnitID="ca-app-pub-9265958693530473/1714375186"
-          // testDeviceID="EMULATOR"
-          servePersonalizedAds
-          didFailToReceiveAdWithError={bannerError}
-        />
-      </View>
+      </ScrollViewContainer>
+      <AdMobBannerAd />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  bottomBanner: {
-    position: "absolute",
-    bottom: 0,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    marginBottom: 50,
-  },
-});
 
 export default FirstPage;

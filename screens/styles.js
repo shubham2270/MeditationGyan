@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-// import typography from "./constants";
-
 export const typography = {
   heading: "25px",
   title: "20px",
@@ -17,8 +15,6 @@ const CardTouchable = styled.TouchableOpacity`
 
 const CardImageBackground = styled.ImageBackground`
   border-radius: 8px;
-  /* display: flex; */
-  /* align-items: center; */
   background-color: purple;
   justify-content: center;
   font-size: 12px;
@@ -108,6 +104,37 @@ const NoInternetTextWrapper = styled.View`
   margin: 10px;
 `;
 
+const ScrollViewContainer = styled.ScrollView`
+  flex: 1;
+  margin-bottom: 50px;
+  padding-bottom: 10px;
+`;
+
+const Container = styled.View`
+  flex: 1;
+  background-color: white;
+  margin-bottom: 40px;
+`;
+
+const MainContainer = styled.View`
+  flex: 1;
+`;
+
+const ProgressContainer = styled.View`
+  width: 200px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: #f5f2e9;
+  margin-top: 10px;
+`;
+
+const ProgressFill = styled.View`
+  width: ${(props) => props.fill}%;
+  height: 20px;
+  border-radius: 50px;
+  background-color: #ffcf40;
+`;
+
 export {
   CardWrapper,
   NoInternetText,
@@ -122,4 +149,9 @@ export {
   Name,
   Logo,
   NoInternetTextWrapper,
+  ScrollViewContainer,
+  Container,
+  MainContainer,
+  ProgressContainer,
+  ProgressFill,
 };
