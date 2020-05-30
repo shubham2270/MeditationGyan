@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Ionicons } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
-import * as React from "react";
-import { StyleSheet, View, Share } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Share, Alert } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import * as Updates from "expo-updates";
 import * as Linking from "expo-linking";
 
 import AdMobBannerAd from "./AdMobBanner";
@@ -15,9 +16,14 @@ import {
   OptionIconContainer,
   ShareWrapper,
   ShareText,
+  CheckForUpdate,
 } from "./styles";
 
 export default function LinksScreen({ dark }) {
+  const [checkUpdateText, setCheckUpdateText] = useState(
+    "Check for new contents!"
+  );
+
   const shareWhatsapp = () => {
     Linking.openURL(
       `https://wa.me/?text=Hey I am using this app is just awesome download: https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan `
@@ -35,6 +41,7 @@ export default function LinksScreen({ dark }) {
         if (result.activityType) {
           // shared with activity type of result.activityType
         } else {
+          console.log("Cancel Pressed");
           // shared
         }
       } else if (result.action === Share.dismissedAction) {
@@ -50,6 +57,46 @@ export default function LinksScreen({ dark }) {
       "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan"
     );
   };
+  const checkForUpdate = async () => {
+    try {
+      setCheckUpdateText("Checking for new contents...");
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        Alert.alert(
+          "Update",
+          "New contents are available! Your app will reload now!",
+          [
+            {
+              text: "OK",
+              style: "cancel",
+            },
+          ],
+          { cancelable: false }
+        );
+        setCheckUpdateText("Check for new contents!");
+        await Updates.fetchUpdateAsync();
+        // ... notify user of update ...
+
+        await Updates.reloadAsync();
+      } else {
+        setCheckUpdateText("Check for new contents!");
+        Alert.alert(
+          "Update",
+          "Your contents are up to date! ",
+          [
+            {
+              text: "OK",
+              style: "cancel",
+            },
+          ],
+          { cancelable: false }
+        );
+      }
+    } catch (e) {
+      // handle or log error
+    }
+  };
+
   return (
     <MainContainer dark={dark}>
       <LinkScrollViewWrapper>
@@ -74,12 +121,15 @@ export default function LinksScreen({ dark }) {
 
         <ShareWrapper>
           <ShareText onPress={shareWhatsapp}>
-            Share this app on Whatsapp
+            Share this app on Whatsapp!
           </ShareText>
           <ShareText onPress={onShare}>Share with other</ShareText>
           <ShareText onPress={openPlayStore}>
             Give 5 Star Rating on Playstore!
           </ShareText>
+          <CheckForUpdate onPress={checkForUpdate}>
+            {checkUpdateText}
+          </CheckForUpdate>
         </ShareWrapper>
       </LinkScrollViewWrapper>
 

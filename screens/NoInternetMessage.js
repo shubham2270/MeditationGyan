@@ -13,8 +13,8 @@ const NoInternetMessage = ({ setLoading }) => {
     <NoInternetTextWrapper>
       {setLoadingTrue()}
       <NoInternetText>
-        Please turn ON Internet to use this app! If already on try turning it
-        OFF and ON again.
+        Please turn ON Internet to use this app! If already ON try closing &
+        opening app again
       </NoInternetText>
     </NoInternetTextWrapper>
   );

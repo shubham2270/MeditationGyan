@@ -181,12 +181,18 @@ const ShareWrapper = styled.View`
 `;
 
 const ShareText = styled.Text`
-  background-color: yellowgreen;
+  background-color: #7f171f;
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 10px;
+  color: white;
+`;
+
+const CheckForUpdate = styled(ShareText)`
+  background-color: yellowgreen;
+  color: black;
 `;
 
 const AppNameMainWrapper = styled.View`
@@ -207,6 +213,7 @@ const AdMobWrapper = styled.View`
 `;
 
 export {
+  CheckForUpdate,
   AdMobWrapper,
   ThemeText,
   AppNameMainWrapper,
