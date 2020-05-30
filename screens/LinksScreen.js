@@ -2,20 +2,59 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { RectButton, ScrollView } from "react-native-gesture-handler";
+import { StyleSheet, View, Share } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+import * as Linking from "expo-linking";
+
 import AdMobBannerAd from "./AdMobBanner";
 
-export default function LinksScreen() {
+import {
+  MainContainer,
+  LinkScrollViewWrapper,
+  OptionText,
+  OptionIconContainer,
+  ShareWrapper,
+  ShareText,
+} from "./styles";
+
+export default function LinksScreen({ dark }) {
+  const shareWhatsapp = () => {
+    Linking.openURL(
+      `https://wa.me/?text=Hey I am using this app is just awesome download: https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan `
+    );
+  };
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan",
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const openPlayStore = () => {
+    WebBrowser.openBrowserAsync(
+      "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan"
+    );
+  };
   return (
-    <View>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
+    <MainContainer dark={dark}>
+      <LinkScrollViewWrapper>
         <OptionButton
           icon="logo-youtube"
-          bgColor="#bdb2ff"
           label="Subscribe Our Youtube channel"
           onPress={() =>
             WebBrowser.openBrowserAsync("https://youtube.com/shubham2270")
@@ -24,7 +63,6 @@ export default function LinksScreen() {
 
         <OptionButton
           icon="logo-facebook"
-          bgColor="#a0c4ff"
           label="Like Our Facebook Page!"
           onPress={() =>
             WebBrowser.openBrowserAsync(
@@ -34,70 +72,47 @@ export default function LinksScreen() {
           isLastOption
         />
 
-        {/* <Text>SOCIAL SHARE</Text> */}
-      </ScrollView>
+        <ShareWrapper>
+          <ShareText onPress={shareWhatsapp}>
+            Share this app on Whatsapp
+          </ShareText>
+          <ShareText onPress={onShare}>Share with other</ShareText>
+          <ShareText onPress={openPlayStore}>
+            Give 5 Star Rating on Playstore!
+          </ShareText>
+        </ShareWrapper>
+      </LinkScrollViewWrapper>
+
       <View>
         <AdMobBannerAd />
       </View>
-    </View>
+    </MainContainer>
   );
 }
 
-function OptionButton({ icon, label, bgColor, onPress, isLastOption }) {
+const OptionButton = ({ icon, label, onPress }) => {
   return (
-    <RectButton
-      style={styles.option}
-      // style={{ backgroundColor: bgColor }}
-      onPress={onPress}
-    >
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
+    <RectButton style={styles.option} onPress={onPress}>
+      <OptionIconContainer>
+        <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+      </OptionIconContainer>
+      <View>
+        <OptionText>{label}</OptionText>
       </View>
     </RectButton>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    // display: "flex",
-    padding: 20,
-    height: "80%",
-    // flex: 1,
-    // backgroundColor: "#fafafa",
-    backgroundColor: "yellow",
-  },
-  contentContainer: {
-    paddingTop: 15,
-  },
-  bottomBanner: {
-    flex: 1,
-    position: "absolute",
-    bottom: 0,
-  },
-  optionIconContainer: {
-    marginRight: 12,
-  },
   option: {
     marginBottom: 20,
     paddingHorizontal: 20,
     paddingVertical: 20,
-    borderWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: 0,
     borderRadius: 5,
     backgroundColor: "#ffbe0b",
-  },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  optionText: {
-    fontSize: 20,
-    alignSelf: "flex-start",
-    marginTop: 1,
-    fontWeight: "bold",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

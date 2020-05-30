@@ -9,10 +9,10 @@ import {
   ProgressFill,
 } from "./styles";
 
-const Loader = () => {
+const Loader = ({ dark }) => {
   const [fill, setFill] = useState(0);
 
-  // Fills the progress bar 0.65every 5 mili second untill 3 seconds then clear interval
+  // Fills the progress bar 0.58every 5 miliseconds untill 3 seconds then clear interval
   useEffect(() => {
     const interval = setInterval(() => {
       setFill((fill) => fill + 0.58);
@@ -20,12 +20,11 @@ const Loader = () => {
 
     return () => clearInterval(interval);
   }, []);
-  console.log("filll", fill);
 
   return (
     <NoInternetTextWrapper>
       <NoInternetText>Loading...</NoInternetText>
-      <ProgressContainer>
+      <ProgressContainer dark={dark}>
         <ProgressFill fill={fill} />
       </ProgressContainer>
     </NoInternetTextWrapper>

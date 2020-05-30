@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import React, { useState } from "react";
 import { NetworkConsumer } from "react-native-offline";
 import { AdMobInterstitial } from "expo-ads-admob";
-import { Share, Button, Text } from "react-native";
+import { Share, Text, Button, BackHandler, Alert } from "react-native";
 import * as Linking from "expo-linking";
 
 import { allData } from "../assets/data";
@@ -20,9 +21,14 @@ import Loader from "./Loader";
 import LogoName from "./LogoName";
 import AdMobBannerAd from "./AdMobBanner";
 
-export default function HomeScreen({ navigation, isConnected }) {
-  const [loading, setLoading] = useState(false);
-  // TODO: TO SET IT TRUE BEFORE PUBLISHING
+export default function HomeScreen({ navigation, route }) {
+  // TODO: TO SET IT TRUE BEFORE PUBLISHING TO SHOW LOADING
+  const [loading, setLoading] = useState(true);
+  const [dark, setDark] = useState(false);
+
+  const toogleTheme = () => {
+    setDark(!dark);
+  };
 
   // Show Full screen ads
   const showInterstitial = async () => {
@@ -35,9 +41,10 @@ export default function HomeScreen({ navigation, isConnected }) {
 
   const OpenArticle = (data) => {
     // TODO: UNCOMMENT
-    // showInterstitial();
+    showInterstitial();
     return navigation.navigate("FirstPage", {
       data,
+      dark,
     });
   };
 
@@ -47,54 +54,39 @@ export default function HomeScreen({ navigation, isConnected }) {
     }, 3000);
   };
 
-  const shareWhatsapp = () => {
-    Linking.openURL(
-      `https://wa.me/?text=https://fb.com/shubhamkumarmeditation`
-    );
-  };
-
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message: "https://fb.com/shubhamkumarmeditation",
-      });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
+  const handleBackButton = () => {
+    // console.log("route", route);
+    if (navigation.isFocused()) {
+      Alert.alert(
+        "Exit App",
+        "Do you want to exit?",
+        [
+          {
+            text: "No",
+            style: "cancel",
+          },
+          { text: "Yes", onPress: () => BackHandler.exitApp() },
+        ],
+        { cancelable: false }
+      );
+      return true;
     }
   };
+  BackHandler.addEventListener("hardwareBackPress", handleBackButton);
 
   return (
-    <MainContainer>
+    <MainContainer dark={dark}>
       {/* Checks for Internet connection and render*/}
       <NetworkConsumer>
         {({ isConnected }) =>
           isConnected ? (
-            <Container>
-              <LogoName />
+            <Container dark={dark}>
+              <LogoName dark={dark} toogleTheme={toogleTheme} />
               {setLoadingFalse()}
               {loading ? (
-                <Loader />
+                <Loader dark={dark} />
               ) : (
-                <ScrollViewContainer>
-                  <Text onPress={onShare}>
-                    SHARE THIS APP
-                    {/* <Button onPress={onShare} title="Share" />; */}
-                  </Text>
-                  <Text onPress={shareWhatsapp}>
-                    WHATSAPP
-                    {/* <Button onPress={onShare} title="Share" />; */}
-                  </Text>
-
+                <ScrollViewContainer dark={dark}>
                   <CardWrapper>
                     {allData.map((data) => {
                       const image = { uri: data.cardImage };
@@ -123,7 +115,7 @@ export default function HomeScreen({ navigation, isConnected }) {
         }
       </NetworkConsumer>
       {/* AdMob banner ad bottom */}
-      <AdMobBannerAd />
+      <AdMobBannerAd dark={dark} />
     </MainContainer>
   );
 }

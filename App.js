@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { Platform, StatusBar, StyleSheet, View, Text } from "react-native";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import { NetworkProvider } from "react-native-offline";
 
 import useCachedResources from "./hooks/useCachedResources";
@@ -11,8 +11,9 @@ import FirstPage from "./screens/FirstPage";
 
 const Stack = createStackNavigator();
 
-export default function App(props) {
+export default function App() {
   const isLoadingComplete = useCachedResources();
+
   if (!isLoadingComplete) {
     return null;
   } else {
