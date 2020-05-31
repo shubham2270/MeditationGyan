@@ -1,4 +1,4 @@
-export const allData = [
+export const dhyan = [
   {
     mainTitle: "ध्यान क्या है?",
     cardImage: "https://source.unsplash.com/n0AlE3-Ad8I/360x200",
@@ -367,8 +367,6 @@ export const allData = [
     ],
   },
 ];
-
-export default { allData };
 
 // Schema for storing data for article
 

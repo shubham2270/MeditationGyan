@@ -2,12 +2,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
-import { StyleSheet, View, Share, Alert } from "react-native";
+import { StyleSheet, View, Alert } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import * as Updates from "expo-updates";
-import * as Linking from "expo-linking";
 
 import AdMobBannerAd from "./AdMobBanner";
+import useShareWhatsApp from "../hooks/useShareWhatsapp";
+import useShareAll from "../hooks/useShareAll";
 
 import {
   MainContainer,
@@ -24,39 +25,6 @@ export default function LinksScreen({ dark }) {
     "Check for new contents!"
   );
 
-  const shareWhatsapp = () => {
-    Linking.openURL(
-      `https://wa.me/?text=Hey I am using this app is just awesome download: https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan `
-    );
-  };
-
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message:
-          "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan",
-      });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          console.log("Cancel Pressed");
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
-  const openPlayStore = () => {
-    WebBrowser.openBrowserAsync(
-      "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan"
-    );
-  };
   const checkForUpdate = async () => {
     try {
       setCheckUpdateText("Checking for new contents...");
@@ -120,11 +88,27 @@ export default function LinksScreen({ dark }) {
         />
 
         <ShareWrapper>
-          <ShareText onPress={shareWhatsapp}>
+          <ShareText
+            onPress={() =>
+              useShareWhatsApp("Hey I am using this app is just awesome")
+            }
+          >
             Share this app on Whatsapp!
           </ShareText>
-          <ShareText onPress={onShare}>Share with other</ShareText>
-          <ShareText onPress={openPlayStore}>
+          <ShareText
+            onPress={() =>
+              useShareAll("Hey I am using this app is just awesome")
+            }
+          >
+            Share with other
+          </ShareText>
+          <ShareText
+            onPress={() =>
+              WebBrowser.openBrowserAsync(
+                "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan"
+              )
+            }
+          >
             Give 5 Star Rating on Playstore!
           </ShareText>
           <CheckForUpdate onPress={checkForUpdate}>

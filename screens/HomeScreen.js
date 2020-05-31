@@ -3,10 +3,19 @@ import "react-native-gesture-handler";
 import React, { useState } from "react";
 import { NetworkConsumer } from "react-native-offline";
 import { AdMobInterstitial } from "expo-ads-admob";
-import { Share, Text, Button, BackHandler, Alert } from "react-native";
+import {
+  Share,
+  Text,
+  Button,
+  BackHandler,
+  Alert,
+  FlatList,
+} from "react-native";
 import * as Linking from "expo-linking";
 
-import { allData } from "../assets/data";
+import { dhyan } from "../assets/data/dhyan";
+import { kabirdohe } from "../assets/data/kabirdohe";
+import useInterstitialAd from "../hooks/useInterstitialAd";
 import {
   CardWrapper,
   CardText,
@@ -20,28 +29,21 @@ import NoInternetMessage from "./NoInternetMessage";
 import Loader from "./Loader";
 import LogoName from "./LogoName";
 import AdMobBannerAd from "./AdMobBanner";
+import DoheCard from "../components/DoheCard";
 
-export default function HomeScreen({ navigation, route }) {
+export default function HomeScreen({ navigation }) {
   // TODO: TO SET IT TRUE BEFORE PUBLISHING TO SHOW LOADING
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
 
   const toogleTheme = () => {
     setDark(!dark);
   };
 
-  // Show Full screen ads
-  const showInterstitial = async () => {
-    await AdMobInterstitial.setAdUnitID(
-      "ca-app-pub-9265958693530473/2300219617"
-    );
-    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-    await AdMobInterstitial.showAdAsync();
-  };
-
   const OpenArticle = (data) => {
-    // TODO: UNCOMMENT
-    showInterstitial();
+    // Show Full screen ads
+    // TODO: ENABLE AD BEFORE PUBLISHING
+    // useInterstitialAd();
     return navigation.navigate("FirstPage", {
       data,
       dark,
@@ -55,7 +57,6 @@ export default function HomeScreen({ navigation, route }) {
   };
 
   const handleBackButton = () => {
-    // console.log("route", route);
     if (navigation.isFocused()) {
       Alert.alert(
         "Exit App",
@@ -88,7 +89,7 @@ export default function HomeScreen({ navigation, route }) {
               ) : (
                 <ScrollViewContainer dark={dark}>
                   <CardWrapper>
-                    {allData.map((data) => {
+                    {dhyan.map((data) => {
                       const image = { uri: data.cardImage };
                       return (
                         <CardTouchable
@@ -96,7 +97,6 @@ export default function HomeScreen({ navigation, route }) {
                           onPress={() => OpenArticle(data)}
                         >
                           <CardImageBackground
-                            onPress={showInterstitial}
                             source={image}
                             imageStyle={{ borderRadius: 8 }}
                           >
@@ -106,6 +106,19 @@ export default function HomeScreen({ navigation, route }) {
                       );
                     })}
                   </CardWrapper>
+
+                  {kabirdohe.map((data) => {
+                    const { doha1, doha2, id, meaning } = data;
+                    return (
+                      <DoheCard
+                        doha1={doha1}
+                        doha2={doha2}
+                        meaning={meaning}
+                        id={id}
+                        key={id}
+                      />
+                    );
+                  })}
                 </ScrollViewContainer>
               )}
             </Container>

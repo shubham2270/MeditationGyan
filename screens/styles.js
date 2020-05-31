@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { RectButton } from "react-native-gesture-handler";
 
 const ThemeColor = {
   dark: {
@@ -25,7 +24,7 @@ export const typography = {
 };
 
 const CardTouchable = styled.TouchableOpacity`
-  width: 180px;
+  width: 45%;
   height: 120px;
   border-radius: 8px;
   margin-top: 12px;
