@@ -33,20 +33,14 @@ import DoheCard from "../components/DoheCard";
 
 export default function HomeScreen({ navigation }) {
   // TODO: TO SET IT TRUE BEFORE PUBLISHING TO SHOW LOADING
-  const [loading, setLoading] = useState(false);
-  const [dark, setDark] = useState(false);
-
-  const toogleTheme = () => {
-    setDark(!dark);
-  };
+  const [loading, setLoading] = useState(true);
 
   const OpenArticle = (data) => {
     // Show Full screen ads
     // TODO: ENABLE AD BEFORE PUBLISHING
-    // useInterstitialAd();
+    useInterstitialAd();
     return navigation.navigate("FirstPage", {
       data,
-      dark,
     });
   };
 
@@ -76,18 +70,18 @@ export default function HomeScreen({ navigation }) {
   BackHandler.addEventListener("hardwareBackPress", handleBackButton);
 
   return (
-    <MainContainer dark={dark}>
+    <MainContainer>
       {/* Checks for Internet connection and render*/}
       <NetworkConsumer>
         {({ isConnected }) =>
           isConnected ? (
-            <Container dark={dark}>
-              <LogoName dark={dark} toogleTheme={toogleTheme} />
+            <Container>
+              <LogoName toogleTheme={() => {}} />
               {setLoadingFalse()}
               {loading ? (
-                <Loader dark={dark} />
+                <Loader />
               ) : (
-                <ScrollViewContainer dark={dark}>
+                <ScrollViewContainer>
                   <CardWrapper>
                     {dhyan.map((data) => {
                       const image = { uri: data.cardImage };
@@ -128,7 +122,7 @@ export default function HomeScreen({ navigation }) {
         }
       </NetworkConsumer>
       {/* AdMob banner ad bottom */}
-      <AdMobBannerAd dark={dark} />
+      <AdMobBannerAd />
     </MainContainer>
   );
 }

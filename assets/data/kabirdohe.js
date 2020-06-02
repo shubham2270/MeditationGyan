@@ -70,6 +70,12 @@ export const kabirdohe = [
     meaning:
       "भावार्थ: कबीर दास जी कहते हैं कि इंसान की इच्छाएं एक पानी के बुलबुले के समान हैं जो पल भर में बनती हैं और पल भर में खत्म। जिस दिन आपको सच्चे गुरु के दर्शन होंगे उस दिन ये सब मोह माया और सारा अंधकार छिप जायेगा।",
   },
+  {
+    id: 11,
+    doha1: "More Dohe Will be added Soon!",
+    doha2: "",
+    meaning: "Keep App Installed!",
+  },
 ];
 
 // Schema for dohe

@@ -9,7 +9,7 @@ import {
   ProgressFill,
 } from "./styles";
 
-const Loader = ({ dark }) => {
+const Loader = () => {
   const [fill, setFill] = useState(0);
 
   // Fills the progress bar 0.58every 5 miliseconds untill 3 seconds then clear interval
@@ -24,7 +24,7 @@ const Loader = ({ dark }) => {
   return (
     <NoInternetTextWrapper>
       <NoInternetText>Loading...</NoInternetText>
-      <ProgressContainer dark={dark}>
+      <ProgressContainer>
         <ProgressFill fill={fill} />
       </ProgressContainer>
     </NoInternetTextWrapper>

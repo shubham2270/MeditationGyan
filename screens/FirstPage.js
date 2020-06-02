@@ -12,30 +12,28 @@ import {
 import AdMobBannerAd from "./AdMobBanner";
 
 const FirstPage = ({ route }) => {
-  const { dark, data } = route.params;
+  const { data } = route.params;
   const { mainTitle, intro, points } = data;
 
   return (
     <>
-      <ScrollViewContainer dark={dark}>
+      <ScrollViewContainer>
         <View>
-          <ArticleHeading dark={dark}>{mainTitle}</ArticleHeading>
+          <ArticleHeading>{mainTitle}</ArticleHeading>
         </View>
         <View>
-          <ArticleIntro dark={dark}>{intro}</ArticleIntro>
+          <ArticleIntro>{intro}</ArticleIntro>
         </View>
         {points.map((el) => {
           return (
             <View key={el.id}>
               {el.title === "" ? null : <Title>{el.title}</Title>}
-              {el.content === "" ? null : (
-                <Content dark={dark}>{el.content}</Content>
-              )}
+              {el.content === "" ? null : <Content>{el.content}</Content>}
             </View>
           );
         })}
       </ScrollViewContainer>
-      <AdMobBannerAd dark={dark} />
+      <AdMobBannerAd />
     </>
   );
 };

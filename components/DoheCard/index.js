@@ -19,13 +19,13 @@ import useInterstitialAd from "../../hooks/useInterstitialAd";
 const DoheCard = ({ doha1, doha2, meaning, id }) => {
   const showAdAndShareWhatsapp = () => {
     //TODO: ENABLE AD BEFORE PUBLISHING
-    // useInterstitialAd();
+    useInterstitialAd();
     useShareWhatsApp(`*${doha1}*\n*${doha2}*\n\n${meaning}`);
   };
 
   const showAdAndShareAll = () => {
     //TODO: ENABLE AD BEFORE PUBLISHING
-    // useInterstitialAd();
+    useInterstitialAd();
     useShareAll(`${doha1}\n${doha2}\n\n${meaning}`);
   };
 
