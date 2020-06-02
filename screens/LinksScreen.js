@@ -20,7 +20,7 @@ import {
   CheckForUpdate,
 } from "./styles";
 
-export default function LinksScreen({ dark }) {
+export default function LinksScreen() {
   const [checkUpdateText, setCheckUpdateText] = useState(
     "Check for new contents!"
   );
@@ -66,7 +66,7 @@ export default function LinksScreen({ dark }) {
   };
 
   return (
-    <MainContainer dark={dark}>
+    <MainContainer>
       <LinkScrollViewWrapper>
         <OptionButton
           icon="logo-youtube"

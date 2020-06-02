@@ -58,14 +58,14 @@ const ArticleHeading = styled.Text`
   font-weight: bold;
   text-align: center;
   padding: 20px 0px;
-  color: ${Theme.text};
+  color: ${(props) => props.textColor};
 `;
 
 const ArticleIntro = styled.Text`
   font-size: ${typography.content};
   padding: 20px;
   text-align: justify;
-  color: ${Theme.text};
+  color: ${(props) => props.textColor};
 `;
 
 const Title = styled.Text`
@@ -82,7 +82,7 @@ const Content = styled.Text`
   font-size: ${typography.content};
   margin: 10px 20px 40px 20px;
   text-align: justify;
-  color: ${Theme.text};
+  color: ${(props) => props.textColor};
 `;
 
 const AppNameWrapper = styled.View`
@@ -97,7 +97,7 @@ const Name = styled.Text`
   font-size: ${typography.heading};
   margin-left: 10px;
   font-size: 20px;
-  color: ${Theme.text};
+  color: ${(props) => props.textColor};
 `;
 
 const Logo = styled.Image`
@@ -129,17 +129,17 @@ const NoInternetTextWrapper = styled.View`
 const ScrollViewContainer = styled.ScrollView`
   flex: 1;
   padding-bottom: 10px;
-  background-color: ${Theme.bg};
+  /* background-color: ${Theme.bg}; */
 `;
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${Theme.bg};
+  /* background-color: ${Theme.bg}; */
 `;
 
 const MainContainer = styled.View`
   flex: 1;
-  background-color: ${Theme.bg};
+  /* background-color: ${Theme.bg}; */
 `;
 
 const ProgressContainer = styled.View`
@@ -159,7 +159,7 @@ const ProgressFill = styled.View`
 
 const LinkScrollViewWrapper = styled.ScrollView`
   padding: 20px;
-  background-color: ${Theme.bg};
+  /* background-color: ${Theme.bg}; */
 `;
 
 const OptionText = styled.Text`
@@ -204,11 +204,11 @@ const AppNameMainWrapper = styled.View`
 
 const ThemeText = styled.Text`
   font-weight: bold;
-  color: ${Theme.text};
+  color: ${(props) => props.textColor};
 `;
 
 const AdMobWrapper = styled.View`
-  background-color: ${Theme.bg};
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 export {

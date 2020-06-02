@@ -28,6 +28,7 @@ const Meaning = styled.Text`
   font-size: ${typography.small};
   text-align: justify;
   line-height: 23px;
+  color: ${(props) => props.textColor};
 `;
 
 const ShareIconWrapper = styled.View`

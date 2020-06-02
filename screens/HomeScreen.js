@@ -2,16 +2,7 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
 import { NetworkConsumer } from "react-native-offline";
-import { AdMobInterstitial } from "expo-ads-admob";
-import {
-  Share,
-  Text,
-  Button,
-  BackHandler,
-  Alert,
-  FlatList,
-} from "react-native";
-import * as Linking from "expo-linking";
+import { BackHandler, Alert } from "react-native";
 
 import { dhyan } from "../assets/data/dhyan";
 import { kabirdohe } from "../assets/data/kabirdohe";
@@ -38,7 +29,7 @@ export default function HomeScreen({ navigation }) {
   const OpenArticle = (data) => {
     // Show Full screen ads
     // TODO: ENABLE AD BEFORE PUBLISHING
-    useInterstitialAd();
+    // useInterstitialAd();
     return navigation.navigate("FirstPage", {
       data,
     });

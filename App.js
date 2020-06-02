@@ -1,6 +1,10 @@
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as React from "react";
+import React, { useState, createContext } from "react";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import { NetworkProvider } from "react-native-offline";
 
@@ -10,9 +14,38 @@ import LinkingConfiguration from "./navigation/LinkingConfiguration";
 import FirstPage from "./screens/FirstPage";
 
 const Stack = createStackNavigator();
+export const ThemeContext = createContext();
 
 export default function App() {
+  const [darkTheme, setDark] = useState(false);
   const isLoadingComplete = useCachedResources();
+
+  const toogleTheme = () => {
+    setDark(!darkTheme);
+  };
+
+  const LightTheme = {
+    ...DefaultTheme,
+    dark: false,
+    colors: {
+      ...DefaultTheme.colors,
+    },
+  };
+
+  const DarkTheme = {
+    ...DarkTheme,
+    dark: true,
+    colors: {
+      ...DefaultTheme.colors,
+      background: "#292929",
+      text: "#fff",
+      primary: "#fff",
+      card: "rgba(28, 28, 28, 0.5)",
+      border: "rgb(0, 0, 0)",
+    },
+  };
+
+  console.log("darkTheme:", DefaultTheme);
 
   if (!isLoadingComplete) {
     return null;
@@ -20,14 +53,19 @@ export default function App() {
     return (
       <View style={styles.container}>
         {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
-        <NetworkProvider>
-          <NavigationContainer linking={LinkingConfiguration}>
-            <Stack.Navigator>
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-              <Stack.Screen name="FirstPage" component={FirstPage} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </NetworkProvider>
+        <ThemeContext.Provider value={{ darkTheme, toogleTheme }}>
+          <NetworkProvider>
+            <NavigationContainer
+              linking={LinkingConfiguration}
+              theme={darkTheme ? DarkTheme : LightTheme}
+            >
+              <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} />
+                <Stack.Screen name="FirstPage" component={FirstPage} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </NetworkProvider>
+        </ThemeContext.Provider>
       </View>
     );
   }

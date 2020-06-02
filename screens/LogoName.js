@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import React from "react";
-import { Text, View } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 import {
   AppNameWrapper,
@@ -11,17 +11,26 @@ import {
   ThemeText,
 } from "./styles";
 
-const LogoName = ({ toogleTheme }) => {
+import { ThemeContext } from "../App";
+
+const LogoName = () => {
+  const { colors } = useTheme();
   return (
     <AppNameMainWrapper>
       <AppNameWrapper>
         <Logo source={require("../assets/images/mylogo.jpg")} />
-        <Name>Shubham Kumar</Name>
+        <Name textColor={colors.text}>Shubham Kumar</Name>
       </AppNameWrapper>
-      <ThemeText onPress={toogleTheme}>
-        {/* Disabled dark mode option will be using later after completing */}
-        {/* {dark ? "LIGHT MODE" : "DARK MODE"} */}
-      </ThemeText>
+
+      <ThemeContext.Consumer>
+        {(theme) => {
+          return (
+            <ThemeText onPress={theme.toogleTheme} textColor={colors.text}>
+              {theme.darkTheme ? "LIGHT MODE" : "DARK MODE"}
+            </ThemeText>
+          );
+        }}
+      </ThemeContext.Consumer>
     </AppNameMainWrapper>
   );
 };

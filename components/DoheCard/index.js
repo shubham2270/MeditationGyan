@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
-import { Share, Text, Button, BackHandler, Alert, View } from "react-native";
+import React from "react";
+import { useTheme } from "@react-navigation/native";
 
 import {
   DoheCardWrapper,
@@ -17,6 +17,7 @@ import useShareAll from "../../hooks/useShareAll";
 import useInterstitialAd from "../../hooks/useInterstitialAd";
 
 const DoheCard = ({ doha1, doha2, meaning, id }) => {
+  const { colors } = useTheme();
   const showAdAndShareWhatsapp = () => {
     //TODO: ENABLE AD BEFORE PUBLISHING
     useInterstitialAd();
@@ -38,12 +39,13 @@ const DoheCard = ({ doha1, doha2, meaning, id }) => {
         <Doha>{doha1}</Doha>
         <Doha>{doha2}</Doha>
       </DohaWrapper>
-      <Meaning>{meaning}</Meaning>
+      <Meaning textColor={colors.text}>{meaning}</Meaning>
       <ShareIconWrapper>
         <Ionicons
           name="md-share"
           size={30}
-          color="rgba(0,0,0,0.5)"
+          // color="rgba(0,0,0,0.5)"
+          color={colors.text}
           onPress={showAdAndShareAll}
         />
         <Ionicons
