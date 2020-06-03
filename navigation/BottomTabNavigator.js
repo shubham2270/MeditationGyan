@@ -4,6 +4,7 @@ import * as React from "react";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
+import DoheScreen from "../screens/DoheScreen";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -23,6 +24,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: "Gyan",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Dohe"
+        component={DoheScreen}
+        options={{
+          title: "Sant Kabir Dohe",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-flower" />
           ),
         }}
       />
@@ -47,6 +58,8 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case "Home":
       return "Meditation Gyan";
+    case "Dohe":
+      return "संत कबीर के प्रसिद्द दोहे";
     case "Links":
       return "Links to learn more";
   }

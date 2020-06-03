@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
   const OpenArticle = (data) => {
     // Show Full screen ads
     // TODO: ENABLE AD BEFORE PUBLISHING
-    // useInterstitialAd();
+    useInterstitialAd();
     return navigation.navigate("FirstPage", {
       data,
     });
@@ -91,19 +91,6 @@ export default function HomeScreen({ navigation }) {
                       );
                     })}
                   </CardWrapper>
-
-                  {kabirdohe.map((data) => {
-                    const { doha1, doha2, id, meaning } = data;
-                    return (
-                      <DoheCard
-                        doha1={doha1}
-                        doha2={doha2}
-                        meaning={meaning}
-                        id={id}
-                        key={id}
-                      />
-                    );
-                  })}
                 </ScrollViewContainer>
               )}
             </Container>

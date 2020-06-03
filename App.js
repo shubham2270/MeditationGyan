@@ -45,8 +45,6 @@ export default function App() {
     },
   };
 
-  console.log("darkTheme:", DefaultTheme);
-
   if (!isLoadingComplete) {
     return null;
   } else {
