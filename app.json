@@ -15,7 +15,7 @@
     "icon": "./assets/images/mylogo.png",
     "scheme": "myapp",
     "splash": {
-      "image": "./assets/images/mylogo.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

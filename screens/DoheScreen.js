@@ -25,7 +25,7 @@ const DoheScreen = () => {
   const [dohaTextSize, setDohaTextSize] = useState(18);
   const [contentTextSize, setContentTextSize] = useState(16);
 
-  //Runs Full secreen ad every 5 minuits
+  //Run Full secreen ad every 5 minuits
   useEffect(() => {
     const interval = setInterval(() => {
       useInterstitialAd();
