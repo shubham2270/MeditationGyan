@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import React from "react";
-import { View } from "react-native";
 import { AdMobBanner } from "expo-ads-admob";
 import { useTheme } from "@react-navigation/native";
 

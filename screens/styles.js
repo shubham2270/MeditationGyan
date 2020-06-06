@@ -129,17 +129,14 @@ const NoInternetTextWrapper = styled.View`
 const ScrollViewContainer = styled.ScrollView`
   flex: 1;
   padding-bottom: 10px;
-  /* background-color: ${Theme.bg}; */
 `;
 
 const Container = styled.View`
   flex: 1;
-  /* background-color: ${Theme.bg}; */
 `;
 
 const MainContainer = styled.View`
   flex: 1;
-  /* background-color: ${Theme.bg}; */
 `;
 
 const ProgressContainer = styled.View`
@@ -159,11 +156,10 @@ const ProgressFill = styled.View`
 
 const LinkScrollViewWrapper = styled.ScrollView`
   padding: 20px;
-  /* background-color: ${Theme.bg}; */
 `;
 
 const OptionText = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   align-self: flex-start;
   margin-top: 1px;
   font-weight: bold;
@@ -184,7 +180,7 @@ const ShareText = styled.Text`
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 10px;
   color: white;
 `;
@@ -211,7 +207,23 @@ const AdMobWrapper = styled.View`
   background-color: ${(props) => props.backgroundColor};
 `;
 
+const KabirImage = styled.Image`
+  width: 60%;
+  height: 250px;
+  border-radius: 5px;
+  border: 2px solid orange;
+`;
+
+const ImageContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px 0px;
+`;
+
 export {
+  ImageContainer,
+  KabirImage,
   CheckForUpdate,
   AdMobWrapper,
   ThemeText,

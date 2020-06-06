@@ -18,14 +18,14 @@ const DohaWrapper = styled.View`
 `;
 
 const Doha = styled.Text`
-  font-size: ${typography.content};
+  font-size: ${(props) => `${props.dohaTextSize}px`};
   font-weight: bold;
   color: orange;
 `;
 
 const Meaning = styled.Text`
   margin: 10px 0px;
-  font-size: ${typography.small};
+  font-size: ${(props) => `${props.contentTextSize}px`};
   text-align: justify;
   line-height: 23px;
   color: ${(props) => props.textColor};
@@ -40,6 +40,7 @@ const ShareIconWrapper = styled.View`
 
 const DohaNumber = styled.Text`
   font-size: ${typography.content};
+  color: ${(props) => props.textColor};
   position: absolute;
   bottom: 10px;
   right: 10px;

@@ -29,6 +29,7 @@ export default function App() {
     dark: false,
     colors: {
       ...DefaultTheme.colors,
+      background: "#ffffff",
     },
   };
 

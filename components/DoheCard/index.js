@@ -16,7 +16,14 @@ import useShareWhatsApp from "../../hooks/useShareWhatsapp";
 import useShareAll from "../../hooks/useShareAll";
 import useInterstitialAd from "../../hooks/useInterstitialAd";
 
-const DoheCard = ({ doha1, doha2, meaning, id }) => {
+const DoheCard = ({
+  doha1,
+  doha2,
+  meaning,
+  id,
+  dohaTextSize,
+  contentTextSize,
+}) => {
   const { colors } = useTheme();
   const showAdAndShareWhatsapp = () => {
     //TODO: ENABLE AD BEFORE PUBLISHING
@@ -36,15 +43,16 @@ const DoheCard = ({ doha1, doha2, meaning, id }) => {
   return (
     <DoheCardWrapper>
       <DohaWrapper>
-        <Doha>{doha1}</Doha>
-        <Doha>{doha2}</Doha>
+        <Doha dohaTextSize={dohaTextSize}>{doha1}</Doha>
+        <Doha dohaTextSize={dohaTextSize}>{doha2}</Doha>
       </DohaWrapper>
-      <Meaning textColor={colors.text}>{meaning}</Meaning>
+      <Meaning textColor={colors.text} contentTextSize={contentTextSize}>
+        {meaning}
+      </Meaning>
       <ShareIconWrapper>
         <Ionicons
           name="md-share"
           size={30}
-          // color="rgba(0,0,0,0.5)"
           color={colors.text}
           onPress={showAdAndShareAll}
         />
@@ -55,7 +63,7 @@ const DoheCard = ({ doha1, doha2, meaning, id }) => {
           onPress={showAdAndShareWhatsapp}
         />
       </ShareIconWrapper>
-      <DohaNumber>{id}</DohaNumber>
+      <DohaNumber textColor={colors.text}>{id}</DohaNumber>
     </DoheCardWrapper>
   );
 };
