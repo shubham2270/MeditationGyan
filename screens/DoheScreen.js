@@ -1,23 +1,16 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
-import { NetworkConsumer } from "react-native-offline";
-import { ScrollView, View, Text, Image, Button } from "react-native";
 
 import { kabirdohe } from "../assets/data/kabirdohe";
 import useInterstitialAd from "../hooks/useInterstitialAd";
-import typography from "../constants/Typography";
 import TextSizeAdjustment from "../components/TextSizeAdjustment";
 import {
   ScrollViewContainer,
   MainContainer,
   KabirImage,
   ImageContainer,
-  TextSizeButtonWrapper,
-  TestSizeButton,
 } from "./styles";
-import NoInternetMessage from "./NoInternetMessage";
-import Loader from "./Loader";
 import AdMobBannerAd from "./AdMobBanner";
 import DoheCard from "../components/DoheCard";
 
