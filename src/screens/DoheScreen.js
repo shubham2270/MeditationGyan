@@ -11,21 +11,11 @@ import {
   ImageContainer,
 } from "./styles";
 import AdMobBannerAd from "src/components/AdMobBanner";
-import useInterstitialAd from "src/hooks/useInterstitialAd";
 import DoheCard from "src/components/DoheCard";
 
 const DoheScreen = () => {
   const [dohaTextSize, setDohaTextSize] = useState(18);
   const [contentTextSize, setContentTextSize] = useState(16);
-
-  //Run Full secreen ad every 5 minuits
-  useEffect(() => {
-    const interval = setInterval(() => {
-      useInterstitialAd();
-    }, 300000);
-
-    return () => clearInterval(interval);
-  });
 
   const increaseTextSize = () => {
     setDohaTextSize(dohaTextSize + 2);

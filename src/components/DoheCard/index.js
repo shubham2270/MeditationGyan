@@ -25,8 +25,7 @@ const DoheCard = ({
   contentTextSize,
 }) => {
   const { colors } = useTheme();
-  const showAdAndShareWhatsapp = () => {
-    useInterstitialAd();
+  const ShareWhatsapp = () => {
     useShareWhatsApp(`*${doha1}*\n*${doha2}*\n\n${meaning}`);
   };
 
@@ -58,7 +57,7 @@ const DoheCard = ({
           name="logo-whatsapp"
           size={30}
           color="rgba(37,211,102,1)"
-          onPress={showAdAndShareWhatsapp}
+          onPress={ShareWhatsapp}
         />
       </ShareIconWrapper>
       <DohaNumber textColor={colors.text}>{id}</DohaNumber>
