@@ -18,7 +18,8 @@ const DrawerNavigator = () => {
         component={StackNavigator}
         options={{ drawerLabel: "Home" }}
       />
-      <Drawer.Screen
+
+      {/* <Drawer.Screen
         name="Notifications"
         component={Test}
         options={{ drawerLabel: "Updates" }}
@@ -27,7 +28,7 @@ const DrawerNavigator = () => {
         name="Profile"
         component={Test}
         options={{ drawerLabel: "Profile" }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 };

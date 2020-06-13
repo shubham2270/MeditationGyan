@@ -14,7 +14,6 @@ import {
 } from "./styles";
 import useShareWhatsApp from "../../hooks/useShareWhatsapp";
 import useShareAll from "../../hooks/useShareAll";
-import useInterstitialAd from "../../hooks/useInterstitialAd";
 
 const DoheCard = ({
   doha1,
@@ -30,7 +29,6 @@ const DoheCard = ({
   };
 
   const showAdAndShareAll = () => {
-    useInterstitialAd();
     useShareAll(`${doha1}\n${doha2}\n\n${meaning}`);
   };
 

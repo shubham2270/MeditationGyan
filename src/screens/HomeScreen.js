@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { NetworkConsumer } from "react-native-offline";
 import { BackHandler } from "react-native";
 
-import useInterstitialAd from "src/hooks/useInterstitialAd";
 import { ScrollViewContainer, Container, MainContainer } from "./styles";
 import NoInternetMessage from "src/components/NoInternetMessage";
 import ProgressBar from "src/components/ProgressBar";
@@ -19,7 +18,6 @@ export default function HomeScreen({ navigation }) {
 
   const openArticle = (data) => {
     // Show Full screen ads
-    useInterstitialAd();
     return navigation.navigate("FirstPage", {
       data,
     });
