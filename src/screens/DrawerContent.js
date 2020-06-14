@@ -11,7 +11,6 @@ import {
   Caption,
   TouchableRipple,
   Switch,
-  ToggleButton,
   useTheme as usePaperTheme,
 } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,6 +22,7 @@ import {
   ToogleWrapper,
 } from "./styles";
 import { ThemeContext } from "../../App";
+import CheckNewContent from "src/components/CheckNewContent";
 
 const vw = Dimensions.get("window").width / 100;
 const vh = Dimensions.get("window").height / 100;
@@ -105,6 +105,7 @@ const DrawerContent = (props) => {
               );
             }}
           </ThemeContext.Consumer>
+          <CheckNewContent />
         </Drawer.Section>
       </DrawerContentScrollView>
     </View>
