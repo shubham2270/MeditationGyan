@@ -5,18 +5,26 @@ const TextSizeButtonWrapper = styled.View`
   flex-direction: row;
   justify-content: flex-end;
   padding: 5px;
+  align-items: center;
 `;
 
 const TestSizeButton = styled.TouchableHighlight`
-  width: 60px;
-  height: 25px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
   margin-left: 10px;
-  background-color: orange;
-  border-radius: 5px;
+  background-color: ${(props) => (props.disabled ? "grey" : "orange")};
+  border-radius: 50px;
 `;
 
-export { TextSizeButtonWrapper, TestSizeButton };
+const TextSizeName = styled.Text`
+  font-weight: bold;
+  color: grey;
+  position: absolute;
+  left: 5px;
+`;
+
+export { TextSizeButtonWrapper, TestSizeButton, TextSizeName };

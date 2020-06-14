@@ -11,8 +11,6 @@ import {
   ThemeText,
 } from "./styles";
 
-import { ThemeContext } from "../../../App";
-
 const LogoName = () => {
   const { colors } = useTheme();
   return (
@@ -21,16 +19,6 @@ const LogoName = () => {
         <Logo source={require("src/assets/images/mylogo.jpg")} />
         <Name textColor={colors.text}>Shubham Kumar</Name>
       </AppNameWrapper>
-
-      <ThemeContext.Consumer>
-        {(theme) => {
-          return (
-            <ThemeText onPress={theme.toogleTheme} textColor={colors.text}>
-              {theme.darkTheme ? "LIGHT MODE" : "DARK MODE"}
-            </ThemeText>
-          );
-        }}
-      </ThemeContext.Consumer>
     </AppNameMainWrapper>
   );
 };

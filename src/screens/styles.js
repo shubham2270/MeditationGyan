@@ -101,7 +101,35 @@ const ImageContainer = styled.View`
   padding: 8px 0px;
 `;
 
+const DrawerHeader = styled.View`
+  margin-top: 20px;
+`;
+
+const LogoWrapper = styled.View`
+  margin-top: ${(props) => props.vh * 2}px;
+  padding: 5%;
+  display: flex;
+  flex-direction: row;
+`;
+
+const TitleWrapper = styled.View`
+  display: flex;
+  padding-left: 10px;
+  align-items: flex-start;
+`;
+
+const ToogleWrapper = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 16px;
+`;
+
 export {
+  ToogleWrapper,
+  TitleWrapper,
+  LogoWrapper,
+  DrawerHeader,
   ImageContainer,
   KabirImage,
   CheckForUpdate,

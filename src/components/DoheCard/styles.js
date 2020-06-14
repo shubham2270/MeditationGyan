@@ -11,7 +11,7 @@ const typography = {
 };
 
 const DoheCardWrapper = styled.View`
-  width: 90%;
+  width: ${(props) => (props.dohaTextSize > 18 ? 99 : 90)}%;
   padding: 10px;
   border: 1px solid ${Colors.lightGray};
   margin: 10px 0px;
@@ -34,7 +34,7 @@ const Meaning = styled.Text`
   margin: 10px 0px;
   font-size: ${(props) => `${props.contentTextSize}px`};
   text-align: justify;
-  line-height: 23px;
+  line-height: ${(props) => (props.contentTextSize > 16 ? 30 : 23)}px;
   color: ${(props) => props.textColor};
 `;
 

@@ -35,6 +35,7 @@ const DoheScreen = () => {
   return (
     <MainContainer>
       <TextSizeAdjustment
+        dohaTextSize={dohaTextSize}
         handleIncrease={increaseTextSize}
         handleDecrease={decreaseTextSize}
         handleReset={resetTextSize}

@@ -36,7 +36,7 @@ const DoheCard = ({
     return null;
   }
   return (
-    <DoheCardWrapper>
+    <DoheCardWrapper dohaTextSize={dohaTextSize}>
       <DohaWrapper>
         <Doha dohaTextSize={dohaTextSize}>{doha1}</Doha>
         <Doha dohaTextSize={dohaTextSize}>{doha2}</Doha>

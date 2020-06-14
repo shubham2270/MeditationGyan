@@ -1,34 +1,42 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import React from "react";
-import { Text } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 
 import StackNavigator from "./StackNavigator";
+import DrawerContent from "../screens/DrawerContent";
+import useShareWhatsApp from "src/hooks/useShareWhatsapp";
+import useShareAll from "src/hooks/useShareAll";
 
 const Drawer = createDrawerNavigator();
 
-const Test = () => {
-  return <Text>Test</Text>;
+const youtube = () => {
+  WebBrowser.openBrowserAsync("https://youtube.com/shubham2270");
 };
+const facebook = () => {
+  WebBrowser.openBrowserAsync("https://facebook.com/shubhamkumarmeditation");
+};
+
+const playstore = () => {
+  WebBrowser.openBrowserAsync(
+    "https://play.google.com/store/apps/details?id=com.deftdesigner.meditationgyan"
+  );
+};
+
+const shareMessage =
+  "Learn Meditation, Sant Kabir Dohe with meaning and more download app";
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
+      <Drawer.Screen name="Home" component={StackNavigator} />
+      <Drawer.Screen name="Youtube" component={youtube} />
+      <Drawer.Screen name="Facebook" component={facebook} />
       <Drawer.Screen
-        name="Home"
-        component={StackNavigator}
-        options={{ drawerLabel: "Home" }}
+        name="Whatsapp"
+        component={() => useShareWhatsApp(shareMessage)}
       />
-
-      {/* <Drawer.Screen
-        name="Notifications"
-        component={Test}
-        options={{ drawerLabel: "Updates" }}
-      />
-      <Drawer.Screen
-        name="Profile"
-        component={Test}
-        options={{ drawerLabel: "Profile" }}
-      /> */}
+      <Drawer.Screen name="Share" component={() => useShareAll(shareMessage)} />
+      <Drawer.Screen name="Playstore" component={playstore} />
     </Drawer.Navigator>
   );
 };
