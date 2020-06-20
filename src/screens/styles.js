@@ -47,42 +47,6 @@ const MainContainer = styled.View`
   flex: 1;
 `;
 
-const LinkScrollViewWrapper = styled.ScrollView`
-  padding: 20px;
-`;
-
-const OptionText = styled.Text`
-  font-size: 18px;
-  align-self: flex-start;
-  margin-top: 1px;
-  font-weight: bold;
-`;
-
-const OptionIconContainer = styled.View`
-  margin-right: 12px;
-`;
-
-const ShareWrapper = styled.View`
-  border: 1px solid grey;
-  padding: 10px;
-  border-radius: 5px;
-`;
-
-const ShareText = styled.Text`
-  background-color: #7f171f;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: white;
-`;
-
-const CheckForUpdate = styled(ShareText)`
-  background-color: yellowgreen;
-  color: black;
-`;
-
 const AdMobWrapper = styled.View`
   background-color: ${(props) => props.backgroundColor};
 `;
@@ -132,13 +96,7 @@ export {
   DrawerHeader,
   ImageContainer,
   KabirImage,
-  CheckForUpdate,
   AdMobWrapper,
-  ShareText,
-  ShareWrapper,
-  OptionIconContainer,
-  OptionText,
-  LinkScrollViewWrapper,
   ArticleHeading,
   ArticleIntro,
   Title,

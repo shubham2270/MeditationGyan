@@ -3,7 +3,6 @@ import * as React from "react";
 
 import TabBarIcon from "src/components/TabBarIcon";
 import HomeScreen from "src/screens/HomeScreen";
-import LinksScreen from "src/screens/LinksScreen";
 import DoheScreen from "src/screens/DoheScreen";
 
 const BottomTab = createBottomTabNavigator();
@@ -37,16 +36,6 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
-      <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
-        options={{
-          title: "Youtube",
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="logo-youtube" />
-          ),
-        }}
-      />
     </BottomTab.Navigator>
   );
 }
@@ -60,7 +49,5 @@ function getHeaderTitle(route) {
       return "Meditation Gyan";
     case "Dohe":
       return "संत कबीर के प्रसिद्द दोहे";
-    case "Links":
-      return "Links to learn more";
   }
 }
