@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import { Text } from "react-native";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import { ToggleButton } from "react-native-paper";
 
 import BottomTabNavigator from "./BottomTabNavigator";
-import FirstPage from "../screens/FirstPage";
+import Dhyan from "../screens/Dhyan";
+import FavourateDohe from "../screens/FavourateDohe";
 
 const Stack = createStackNavigator();
 
@@ -29,7 +31,8 @@ const StackNavigator = ({ navigation }) => {
             ),
           }}
         />
-        <Stack.Screen name="FirstPage" component={FirstPage} />
+        <Stack.Screen name="Dhyan" component={Dhyan} />
+        <Stack.Screen name="My Favourate Dohe" component={FavourateDohe} />
       </Stack.Navigator>
     </View>
   );

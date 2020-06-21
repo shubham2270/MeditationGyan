@@ -41,7 +41,7 @@ const Meaning = styled.Text`
 const ShareIconWrapper = styled.View`
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: ${(props) => (props.showHeart ? 40 : 25)}%;
   justify-content: space-between;
 `;
 
@@ -53,7 +53,13 @@ const DohaNumber = styled.Text`
   right: 10px;
 `;
 
+const HeartIconWrapper = styled.TouchableOpacity`
+  padding: 5px;
+  padding-bottom: 0px;
+`;
+
 export {
+  HeartIconWrapper,
   DoheCardWrapper,
   DohaWrapper,
   Doha,

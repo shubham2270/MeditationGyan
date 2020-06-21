@@ -12,6 +12,7 @@ import {
   Meaning,
   ShareIconWrapper,
   DohaNumber,
+  HeartIconWrapper,
 } from "./styles";
 import useShareWhatsApp from "../../hooks/useShareWhatsapp";
 import useShareAll from "../../hooks/useShareAll";
@@ -25,9 +26,8 @@ const DoheCard = ({
   contentTextSize,
   stateDohaId,
   setStateDohaId,
+  showHeart,
 }) => {
-  // const [stateDohaId, setStateDohaId] = useState([]);
-
   const { colors } = useTheme();
   const ShareWhatsapp = () => {
     useShareWhatsApp(`*${doha1}*\n*${doha2}*\n\n${meaning}`);
@@ -105,7 +105,7 @@ const DoheCard = ({
       <Meaning textColor={colors.text} contentTextSize={contentTextSize}>
         {meaning}
       </Meaning>
-      <ShareIconWrapper>
+      <ShareIconWrapper showHeart={showHeart}>
         <Ionicons
           name="md-share"
           size={30}
@@ -118,12 +118,15 @@ const DoheCard = ({
           color="rgba(37,211,102,1)"
           onPress={ShareWhatsapp}
         />
-        <Ionicons
-          name={stateDohaId.includes(id) ? "md-heart" : "md-heart-empty"}
-          size={30}
-          color="red"
-          onPress={() => save(id)}
-        />
+        {showHeart && (
+          <HeartIconWrapper onPress={() => save(id)}>
+            <Ionicons
+              name={stateDohaId.includes(id) ? "md-heart" : "md-heart-empty"}
+              size={30}
+              color="red"
+            />
+          </HeartIconWrapper>
+        )}
 
         {/* <Text onPress={removeDohaId}>Empty</Text> */}
         {/* <Text>{`${stateDohaId}`}</Text> */}

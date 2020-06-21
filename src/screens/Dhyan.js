@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import AdMobBannerAd from "src/components/AdMobBanner";
 
-const FirstPage = ({ route }) => {
+const Dhyan = ({ route }) => {
   const { colors } = useTheme();
   const { data } = route.params;
   const { mainTitle, intro, points } = data;
@@ -42,4 +42,4 @@ const FirstPage = ({ route }) => {
   );
 };
 
-export default FirstPage;
+export default Dhyan;

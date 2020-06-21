@@ -16,8 +16,7 @@ export default function HomeScreen({ navigation }) {
   const [loading, setLoading] = useState(true);
 
   const openArticle = (data) => {
-    // Show Full screen ads
-    return navigation.navigate("FirstPage", {
+    return navigation.navigate("Dhyan", {
       data,
     });
   };
