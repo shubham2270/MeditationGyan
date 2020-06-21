@@ -7,6 +7,13 @@ import AdMobBannerAd from "src/components/AdMobBanner";
 
 const FavourateDohe = ({ route }) => {
   const { data, dohaTextSize, contentTextSize, stateDohaId } = route.params;
+
+  if (data.length === 0) {
+    return (
+      <Text>No favourate Doha added. Press heart on doha to add it here!</Text>
+    );
+  }
+
   return (
     <>
       <ScrollView>

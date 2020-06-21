@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { Text } from "react-native";
 
 import { kabirdohe } from "src/assets/data/kabirdohe";

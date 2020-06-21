@@ -17,8 +17,8 @@ const AdMobBannerAd = () => {
       <AdMobBanner
         smartBannerPortrait="smartBanner"
         // TODO: REMOVE TEST ADS!!!!!!!
-        // adUnitID="ca-app-pub-9265958693530473/1714375186" // original
-        adUnitID="ca-app-pub-3940256099942544/6300978111" // test
+        adUnitID="ca-app-pub-9265958693530473/1714375186" // original
+        // adUnitID="ca-app-pub-3940256099942544/6300978111" // test
         servePersonalizedAds
         didFailToReceiveAdWithError={bannerError}
       />
