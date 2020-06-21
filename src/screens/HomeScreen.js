@@ -13,7 +13,6 @@ import ImageCard from "src/components/ImageCard";
 import { confirmExit } from "src/utils/confirmExit";
 
 export default function HomeScreen({ navigation }) {
-  // TODO: TO SET IT TRUE BEFORE PUBLISHING TO SHOW LOADING
   const [loading, setLoading] = useState(true);
 
   const openArticle = (data) => {

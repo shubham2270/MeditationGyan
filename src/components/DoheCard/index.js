@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
+import { Text, AsyncStorage } from "react-native";
 
 import {
   DoheCardWrapper,
@@ -22,7 +23,11 @@ const DoheCard = ({
   id,
   dohaTextSize,
   contentTextSize,
+  stateDohaId,
+  setStateDohaId,
 }) => {
+  // const [stateDohaId, setStateDohaId] = useState([]);
+
   const { colors } = useTheme();
   const ShareWhatsapp = () => {
     useShareWhatsApp(`*${doha1}*\n*${doha2}*\n\n${meaning}`);
@@ -30,6 +35,62 @@ const DoheCard = ({
 
   const showAdAndShareAll = () => {
     useShareAll(`${doha1}\n${doha2}\n\n${meaning}`);
+  };
+
+  // Save doha key to async storage
+  const saveDohaId = (savedId) => {
+    try {
+      AsyncStorage.getItem("id").then((id) => {
+        let dohaId = id ? JSON.parse(id) : [];
+
+        const index = dohaId.indexOf(savedId);
+
+        // Add doha if not added or remove doha if already added from array
+        if (index === -1) {
+          dohaId.push(savedId);
+        } else {
+          dohaId.splice(index, 1);
+        }
+
+        AsyncStorage.setItem("id", JSON.stringify(dohaId)).then(() => {
+          getDohaId();
+        });
+      });
+    } catch (error) {
+      // Error saving data
+      alert(error);
+    }
+  };
+
+  const save = (savedId) => {
+    saveDohaId(savedId);
+  };
+
+  const getDohaId = async () => {
+    try {
+      let id = await AsyncStorage.getItem("id");
+
+      if (id !== null) {
+        setStateDohaId(id);
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  // Loads saved dohs on initial app load
+  useEffect(() => {
+    getDohaId();
+  }, []);
+
+  const removeDohaId = async () => {
+    try {
+      await AsyncStorage.removeItem("id");
+    } catch (err) {
+      alert(err);
+    } finally {
+      setStateDohaId([]);
+    }
   };
 
   if (doha1 === "") {
@@ -57,6 +118,15 @@ const DoheCard = ({
           color="rgba(37,211,102,1)"
           onPress={ShareWhatsapp}
         />
+        <Ionicons
+          name={stateDohaId.includes(id) ? "md-heart" : "md-heart-empty"}
+          size={30}
+          color="red"
+          onPress={() => save(id)}
+        />
+
+        {/* <Text onPress={removeDohaId}>Empty</Text> */}
+        {/* <Text>{`${stateDohaId}`}</Text> */}
       </ShareIconWrapper>
       <DohaNumber textColor={colors.text}>{id}</DohaNumber>
     </DoheCardWrapper>

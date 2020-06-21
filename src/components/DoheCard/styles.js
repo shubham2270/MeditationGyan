@@ -41,7 +41,7 @@ const Meaning = styled.Text`
 const ShareIconWrapper = styled.View`
   display: flex;
   flex-direction: row;
-  width: 80px;
+  width: 80%;
   justify-content: space-between;
 `;
 
