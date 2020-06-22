@@ -5,9 +5,8 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 background: #c9ffc4;
-margin-top: 16px;
 border: 2px solid green;
-margin: 16px 4px;
+margin: 10px 4px 0px 4px;
 border-radius: 4px;
 `;
 

@@ -47,6 +47,7 @@ const DrawerContent = (props) => {
           </LogoWrapper>
         </DrawerHeader>
       </Drawer.Section>
+      <CheckNewContent />
       <DrawerContentScrollView {...props}>
         <Drawer.Section>
           <DrawerItem
@@ -105,7 +106,6 @@ const DrawerContent = (props) => {
               );
             }}
           </ThemeContext.Consumer>
-          <CheckNewContent />
         </Drawer.Section>
       </DrawerContentScrollView>
     </View>
