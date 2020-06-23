@@ -4,13 +4,13 @@
     "slug": "MeditationGyan",
     "android": {
       "package": "com.deftdesigner.meditationgyan",
-      "versionCode": 4,
+      "versionCode": 5,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-9265958693530473~4340538522"
       }
     },
     "platforms": ["ios", "android", "web"],
-    "version": "1.3.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "src/assets/images/mylogo.png",
     "scheme": "myapp",
