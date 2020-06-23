@@ -8,6 +8,7 @@ import { ToggleButton } from "react-native-paper";
 import BottomTabNavigator from "./BottomTabNavigator";
 import Dhyan from "../screens/Dhyan";
 import FavourateDohe from "../screens/FavourateDohe";
+import Logo from "src/components/LogoName";
 
 const Stack = createStackNavigator();
 
@@ -26,9 +27,11 @@ const StackNavigator = ({ navigation }) => {
                 icon="menu"
                 value="menu"
                 status={false}
-                onPress={() => navigation.openDrawer()}
+                onPress={() => navigation.openDrawer()} // Side drawer hamburger
               />
             ),
+            // eslint-disable-next-line react/display-name
+            headerRight: () => <Logo />,
           }}
         />
         <Stack.Screen name="Dhyan" component={Dhyan} />

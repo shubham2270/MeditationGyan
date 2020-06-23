@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Text, View, Dimensions, Alert } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import { useTheme } from "@react-navigation/native";
 import * as Updates from "expo-updates";
 
 import { MainWrapper, CheckUpdateText, LoaderWrapper } from "./styles";
 
 const CheckNewContent = () => {
-  const [checkUpdateText, setCheckUpdateText] = useState(
-    "Check for new contents!"
-  );
+  const [checkUpdateText, setCheckUpdateText] = useState("Check for updates");
   const [loader, setLoader] = useState(false);
   const { colors } = useTheme();
 
@@ -30,18 +30,18 @@ const CheckNewContent = () => {
           ],
           { cancelable: false }
         );
-        setCheckUpdateText("Check for new contents!");
+        setCheckUpdateText("Check for updates");
         setLoader(false);
         await Updates.fetchUpdateAsync();
         // ... notify user of update ...
 
         await Updates.reloadAsync();
       } else {
-        setCheckUpdateText("Check for new contents!");
+        setCheckUpdateText("Check for updates");
         setLoader(false);
         Alert.alert(
           "Update",
-          "Your contents are up to date! ",
+          "Your app is up to date! ",
           [
             {
               text: "OK",
@@ -62,7 +62,11 @@ const CheckNewContent = () => {
         {checkUpdateText}
       </CheckUpdateText>
       <LoaderWrapper>
-        <ActivityIndicator animating={loader} color="orange" />
+        {loader ? (
+          <ActivityIndicator animating={loader} color="orange" />
+        ) : (
+          <MaterialIcons name="update" size={24} color="black" />
+        )}
       </LoaderWrapper>
     </MainWrapper>
   );

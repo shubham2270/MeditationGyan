@@ -41,6 +41,7 @@ const Meaning = styled.Text`
 const ShareIconWrapper = styled.View`
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: ${(props) => (props.showHeart ? 40 : 25)}%;
   justify-content: space-between;
 `;
@@ -54,8 +55,8 @@ const DohaNumber = styled.Text`
 `;
 
 const HeartIconWrapper = styled.TouchableOpacity`
-  padding: 5px;
-  padding-bottom: 0px;
+  /* padding: 5px; */
+  /* padding-bottom: 0px; */
 `;
 
 export {

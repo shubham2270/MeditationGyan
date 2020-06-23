@@ -37,7 +37,7 @@ const DrawerContent = (props) => {
         <DrawerHeader>
           <LogoWrapper vh={vh}>
             <Avatar.Image
-              size={50}
+              size={60}
               source={require("../assets/images/mylogo.png")}
             />
             <TitleWrapper>

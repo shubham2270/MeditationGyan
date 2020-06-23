@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import "react-native-gesture-handler";
 import React from "react";
-import { Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { dark } from "src/constants/Colors";
 
@@ -30,8 +29,6 @@ const TextSizeAdjustment = ({
     }
   };
 
-  // const textSizeName = dohaTextSize === 18 ? 'Default' : dohaTextSize ==== 20 ? "Large" :
-
   return (
     <TextSizeButtonWrapper>
       <TextSizeName>Text Size: {textSizeName()}</TextSizeName>
@@ -42,7 +39,7 @@ const TextSizeAdjustment = ({
         <MaterialIcons name="zoom-out" size={28} color={dark} />
       </TestSizeButton>
       <TestSizeButton onPress={handleReset}>
-        <Text>R</Text>
+        <MaterialIcons name="settings-backup-restore" size={28} color={dark} />
       </TestSizeButton>
     </TextSizeButtonWrapper>
   );

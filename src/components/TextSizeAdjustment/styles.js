@@ -8,7 +8,7 @@ const TextSizeButtonWrapper = styled.View`
   align-items: center;
 `;
 
-const TestSizeButton = styled.TouchableHighlight`
+const TestSizeButton = styled.TouchableOpacity`
   width: 36px;
   height: 36px;
   display: flex;
@@ -24,7 +24,7 @@ const TextSizeName = styled.Text`
   font-weight: bold;
   color: grey;
   position: absolute;
-  left: 5px;
+  left: 16px;
 `;
 
 export { TextSizeButtonWrapper, TestSizeButton, TextSizeName };

@@ -83,16 +83,6 @@ const DoheCard = ({
     getDohaId();
   }, []);
 
-  const removeDohaId = async () => {
-    try {
-      await AsyncStorage.removeItem("id");
-    } catch (err) {
-      alert(err);
-    } finally {
-      setStateDohaId([]);
-    }
-  };
-
   if (doha1 === "") {
     return null;
   }
@@ -127,9 +117,6 @@ const DoheCard = ({
             />
           </HeartIconWrapper>
         )}
-
-        {/* <Text onPress={removeDohaId}>Empty</Text> */}
-        {/* <Text>{`${stateDohaId}`}</Text> */}
       </ShareIconWrapper>
       <DohaNumber textColor={colors.text}>{id}</DohaNumber>
     </DoheCardWrapper>

@@ -8,7 +8,6 @@ import { ScrollViewContainer, Container, MainContainer } from "./styles";
 import NoInternetMessage from "src/components/NoInternetMessage";
 import ProgressBar from "src/components/ProgressBar";
 import AdMobBannerAd from "src/components/AdMobBanner";
-import LogoName from "src/components/LogoName";
 import ImageCard from "src/components/ImageCard";
 import { confirmExit } from "src/utils/confirmExit";
 
@@ -42,7 +41,6 @@ export default function HomeScreen({ navigation }) {
         {({ isConnected }) =>
           isConnected ? (
             <Container>
-              <LogoName />
               {setLoadingFalse()}
               {loading ? (
                 <ProgressBar />
